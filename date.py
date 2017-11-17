@@ -1,12 +1,12 @@
 """
-Date elper functions
+Date helper functions
 """
 
 def is_leap_year(year):
     """
     If a year is a leap year.
     Args:
-        year: year number
+        year: year number.
     Return:
         Boolean: True if a year is leap year.
     """
@@ -37,6 +37,7 @@ def days_in_year(year):
 
 def days_in_month(month, year=None):
     """
+    Number of days in the month
     Algorithm:
         if month is not February:
             Right shift the sequence 5546 (0b1010110101010) by month, get the
@@ -47,10 +48,10 @@ def days_in_month(month, year=None):
         else:
             29 days
     Args:
-        month: month.
-        year: year.
+        month: month number.
+        year: year number.
     Returns:
-        number of days in the month of the year.
+        number of days in the month.
     """
     if month != 2:
         days = 30 + (5546 >> month & 1)
