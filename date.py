@@ -35,7 +35,7 @@ def days_in_year(year):
     return days
 
 
-def days_in_month(date):
+def days_in_month(month, year=None):
     """
     Algorithm:
         if month is not February:
@@ -46,11 +46,15 @@ def days_in_month(date):
             28 days
         else:
             29 days
+    Args:
+        month: month.
+        year: year.
+    Returns:
+        number of days in the month of the year.
     """
-    month = date.month
     if month != 2:
         days = 30 + (5546 >> month & 1)
-    elif is_leap_year(date.year):
+    elif is_leap_year(year):
         days = 29
     else:
         days = 28
