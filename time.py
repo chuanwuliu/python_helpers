@@ -52,8 +52,10 @@ class Date(object):
         return self.__add__(other)
 
     def __sub__(self, other):
-        if isinstance(other, Duration):
+        if isinstance(other, Duration) or isinstance(other, int):
             return self.__add__(-other)
+        elif isinstance(other, self.__class__):
+            return 12 * (self._year - other._year) + self._month - other._month
 
     def _cmp(self, other):
         if isinstance(other, self.__class__):
@@ -79,10 +81,10 @@ class Date(object):
     def is_leap_year(self):
         return _is_leap_year(self._year)
 
-    def year_days(self):
+    def days_of_year(self):
         return 366 if self.is_leap_year() else 365
 
-    def month_days(self):
+    def days_of_month(self):
         return _days_in_month(self._month, self._year)
 
     def next_tax_date(self):
@@ -185,14 +187,15 @@ def _is_leap_year(year):
     else:
         return True
 
+
+_DAYS_IN_MONTH = [31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 def _days_in_month(month, year):
     """
     Days of that month of that year.
     """
     if month != 2:
-        days = [31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month - 1]
+        return _DAYS_IN_MONTH[month - 1]
     elif _is_leap_year(year):
-        days = 29
+        return 29
     else:
-        days = 28
-    return days
+        return 28
