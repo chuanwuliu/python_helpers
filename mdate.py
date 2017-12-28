@@ -140,7 +140,7 @@ class Duration():
         return self.__add__(other)
 
     def __sub__(self, other):
-        self.__add__(-other)
+        return self.__add__(-other)
 
     def __mul__(self, other):
         assert isinstance(other, int)
